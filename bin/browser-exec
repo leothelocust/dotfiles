@@ -1,0 +1,48 @@
+#!/bin/bash
+##############################################################################
+# browser-exec
+# -----------
+# Opens a hyperlink in the browser that is currently being run in a container.
+# First checks if firefox is running then chrome.
+# If neither are running it starts a firefox container.
+#
+# Usage:
+#   browser-exec $uri
+#
+# Based on the amazing work of Jess Frazelle
+#
+# Dependancies: firefox, chrome, nsenter, xdg
+#
+# :authors: Levi Olson
+# :date: 1 Feb 2018
+# :version: 0.0.1
+##############################################################################
+#set -e
+set -o pipefail
+
+browser_exec() {
+    # check if firefox container is running
+    firefox_state=$(docker inspect --format "{{.State.Running}}" firefox 2>/dev/null)
+    if [[ "$firefox_state" == "true" ]]; then
+        docker exec -i firefox /usr/bin/firefox "$@" 2>/dev/null
+    else
+        # check if chrome container is running
+        chrome_state=$(docker inspect --format "{{.State.Running}}" chrome 2>/dev/null)
+        if [[ "$chrome_state" == "true" ]]; then
+            docker exec -i chrome /usr/bin/google-chrome --user-data-dir=/data "$@" 2>/dev/null
+        else
+            # maybe we are running in runc
+            chrome_pid=$(pgrep -f "chrome --user-data" | head -n 1 2>/dev/null)
+            if [[ ! -z "$chrome_pid" ]]; then
+                # nsenter the chrome runc container
+                sudo nsenter -t "$chrome_pid" --pid --user --net --uts --mount --ipc /usr/bin/google-chrome --user-data-dir=/data "$@" 2>/dev/null
+            else
+                # neither are currently running so lets try xdg-open
+                xdg-open "$@"
+            fi
+
+        fi
+    fi
+}
+
+browser_exec "$@"

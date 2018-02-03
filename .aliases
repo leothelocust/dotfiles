@@ -1,0 +1,96 @@
+#!/bin/bash
+
+##################################################
+# .aliases
+# ------------
+# Loosly based on the amazing work of Jess Frazelle
+#
+# :author: Levi Olson
+# :date: 1 Feb 2018
+# :version: 0.0.1
+##################################################
+
+# Check for various OS openers. Quit as soon as we find one that works.
+for opener in browser-exec xdg-open cmd.exe cygstart "start" open; do
+	if command -v $opener >/dev/null 2>&1; then
+		if [[ "$opener" == "cmd.exe" ]]; then
+			# shellcheck disable=SC2139
+			alias open="$opener /c start";
+		else
+			# shellcheck disable=SC2139
+			alias open="$opener";
+		fi
+		break;
+	fi
+done
+
+alias a='emacsclient ~/.bashrc'
+alias sf='source ~/.bashrc'
+alias ll='ls -ahl --color'
+alias l='ls -ahl --color'
+alias e='emacsclient'
+
+alias brightness='sudo tee /sys/class/backlight/acpi_video1/brightness <<<'
+
+alias pmsyu='sudo pacman -Syu --color=auto'
+alias pacman='sudo pacman --color auto'
+alias update='sudo pacman -Syu'
+alias upmirrors='sudo reflector --score 100 --fastest 25 --sort rate --save /etc/pacman.d/mirrorlist --verbose'
+
+#git
+alias pr='git push origin HEAD'
+alias gaa='git add --all .'
+alias gcm='git commit -m'
+alias gc='git checkout'
+alias gd='git diff --patience'
+alias gds='git diff --staged --patience'
+alias st='git status'
+alias gl='git log --decorate'
+alias glb='git log --oneline --decorate --all --graph -n15'
+alias glv='git log --oneline --decorate --all --graph'
+
+#dirs
+alias thit='cd ~/Projects/work/thit-mobile-api/; clear'
+alias gothit='cd ~/go/src/go-thit/; clear'
+
+#docker
+alias dps='docker ps'
+alias dpsa='docker ps -a'
+
+#misc
+alias copy='xsel --clipboard --input'
+alias paste='xsel --clipboard --output'
+
+#untar
+alias untar='tar xvf'
+
+#afk
+alias afk='i3lock -c 000000'
+
+# copy file interactive
+alias cp='cp -i'
+
+# move file interactive
+alias mv='mv -i'
+
+# Intuitive map function
+# For example, to list all directories that contain a certain file:
+# find . -name .gitattributes | map dirname
+alias map="xargs -n1"
+
+# Stopwatch
+alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
+
+# Always enable colored `grep` output
+alias grep='grep --color=auto '
+
+# Easier navigation: .., ..., ...., ....., ~ and -
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ~="cd ~"
+alias -- -="cd -"
+
+# Allow aliases to be "sudoed"
+alias sudo='sudo '

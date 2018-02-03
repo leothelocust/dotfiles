@@ -1,0 +1,27 @@
+#!/bin/bash
+##########################################
+# docker-cleanup-everything
+# ------------
+# Based on the amazing work of Jess Frazelle
+#
+# Dependencies: docker
+#
+# :author: Levi Olson
+# :date: 31 Jan 2018
+# :version: 0.0.1
+##########################################
+
+
+cleanup() {
+    local containers
+    mapfile -t containers < <(docker ps -aq 2>/dev/null)
+    docker rm "${containers[@]}" 2>/dev/null
+    local volumes
+    mapfile -t volumes < <(docker ps --filter status=exited -q 2>/dev/null)
+    docker rm -v "${volumes[@]}" 2>/dev/null
+    local images
+    mapfile -t images < <(docker images --filter dangling=true -q 2>/dev/null)
+    docker rmi "${images[@]}" 2>/dev/null
+}
+
+cleanup

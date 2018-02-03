@@ -1,0 +1,26 @@
+! GENERAL
+URxvt*saveLines:        100000
+URxvt*scrollBar:        false
+URxvt*scrollBar_right:  false
+URxvt*scrollstyle:      rxvt
+URxvt*termName:         rxvt-256color
+
+! THEME
+URxvt*transparent:      true
+URxvt*depth:            32
+URxvt*tintColor:        Gray
+URxvt*shading:          30
+URxvt*foreground:       White
+URxvt*background:       Blue
+URxvt*internalBorder:   14
+URxvt*externalBorder:   0
+
+! FONT
+URxvt*font:             xft:Pragmata Pro:pixelsize=12:antialias=true:hinting=true
+URxvt*boldFont:         xft:Pragmata Pro:bold:pixelsize=12:antialias=true:hinting=true
+URxvt*letterSpace:      0
+
+! EXT
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+URxvt.iso14755: False
+URxvt.perl-ext-common: default,clipboard

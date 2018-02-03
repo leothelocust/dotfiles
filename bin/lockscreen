@@ -1,0 +1,19 @@
+#!/bin/bash
+##########################################
+# lockscreen
+# ------------
+#
+# Dependencies: docker, i3lock, scrot
+#
+# Loosly based on the amazing work of Jess Frazelle
+#
+# :author: Levi Olson
+# :date: 31 Jan 2018
+# :version: 0.0.1
+##########################################
+set -e
+
+# subshell
+(
+    i3lock -c 000000
+)
