@@ -39,3 +39,5 @@ for file in $symdefaults; do
     echo "#!/bin/bash\n\n##############################\n# $file\n# ---------------\n##############################\n\n" > $dir/$file
 done
 echo "...done"
+
+# https://doc-08-0g-docs.googleusercontent.com/docs/securesc/3m7t6hq95j05qojlngekkd8c5obrjfk4/5c0eggqhge779o6kn2oe4dqsgprd16jm/1519423200000/08124755567902560828/08124755567902560828/1oZzZ8UdoqmR6KsZLdmyxjYUUTpLVxMip?e=download&nonce=vqoqalqs6bnai&user=08124
