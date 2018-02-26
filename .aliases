@@ -29,6 +29,7 @@ alias sf='source ~/.bashrc'
 alias ll='ls -ahl --color'
 alias l='ls -ahl --color'
 alias e='emacsclient'
+alias semacs='sudo emacs -Q -bg black -fg wheat --no-splash --file'
 
 alias brightness='sudo tee /sys/class/backlight/acpi_video1/brightness <<<'
 
@@ -94,3 +95,6 @@ alias -- -="cd -"
 
 # Allow aliases to be "sudoed"
 alias sudo='sudo '
+
+# Mount Arch
+alias arch='sudo mount /dev/nvme0n1p1 /arch'

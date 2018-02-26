@@ -19,6 +19,7 @@ URxvt*externalBorder:   0
 URxvt*font:             xft:Pragmata Pro:pixelsize=12:antialias=true:hinting=true
 URxvt*boldFont:         xft:Pragmata Pro:bold:pixelsize=12:antialias=true:hinting=true
 URxvt*letterSpace:      0
+emacs*font:             Pragmata Pro
 
 ! EXT
 URxvt.keysym.Shift-Control-V: perl:clipboard:paste

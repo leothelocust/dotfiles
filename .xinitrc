@@ -5,9 +5,10 @@
 # ---------
 ##########################################
 
-#XDG_CONFIG_HOME="$HOME/.config"
-#export XDG_CONFIG_HOME
+XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CONFIG_HOME
 
+xrdb -merge ~/.cache/wal/colors.Xresources
 xrdb -merge ~/.Xresources
 xrdb -merge ~/.Xdefaults
 
