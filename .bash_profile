@@ -43,3 +43,5 @@ done
 	-W "$(grep "^Host" ~/.ssh/config | \
 	grep -v "[?*]" | cut -d " " -f2 | \
 	tr ' ' '\n')" scp sftp ssh
+
+export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
